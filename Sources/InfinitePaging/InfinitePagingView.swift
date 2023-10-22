@@ -14,7 +14,7 @@ public struct InfinitePagingView<T: Pageable, Content: View>: View {
     let pagingHandler: (PageDirection) -> Void
     let content: (T) -> Content
 
-    init(
+    public init(
         objects: Binding<[T]>,
         pagingHandler: @escaping (PageDirection) -> Void,
         @ViewBuilder content: @escaping (T) -> Content
