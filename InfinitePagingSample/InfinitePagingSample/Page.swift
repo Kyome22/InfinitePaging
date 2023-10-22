@@ -1,5 +1,5 @@
 /*
- Day.swift
+ Page.swift
  InfinitePagingSample
 
  Created by Takuto Nakamura on 2023/10/22.
