@@ -3,19 +3,19 @@
 import PackageDescription
 
 let package = Package(
-    name: "InfinitePagingView",
+    name: "InfinitePaging",
     platforms: [
       .iOS(.v17)
     ],
     products: [
         .library(
-            name: "InfinitePagingView",
-            targets: ["InfinitePagingView"]
+            name: "InfinitePaging",
+            targets: ["InfinitePaging"]
         )
     ],
     targets: [
         .target(
-            name: "InfinitePagingView"
+            name: "InfinitePaging"
         )
     ]
 )

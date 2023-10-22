@@ -1,6 +1,6 @@
 /*
  PageDirection.swift
- InfinitePagingView
+ InfinitePaging
 
  Created by Takuto Nakamura on 2023/10/22.
 */

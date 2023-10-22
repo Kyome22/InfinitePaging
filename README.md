@@ -1,6 +1,6 @@
-# InfinitePagingView
+# InfinitePaging
 
-This is a SwiftUI View that provides infinite paging like a carousel.
+This provides infinite carousel-like paging view in SwiftUI.
 
 ## Requirements
 
@@ -13,5 +13,5 @@ This is a SwiftUI View that provides infinite paging like a carousel.
 
 ```swift
 import SwiftUI
-import InfinitePagingView
+import InfinitePaging
 ```
