@@ -9,9 +9,9 @@ import SwiftUI
 
 struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
     @Binding var objects: [T]
+    @Binding var pageWidth: CGFloat
     @State var pagingOffset: CGFloat
     @State var draggingOffset: CGFloat
-    let pageWidth: CGFloat
     let pagingHandler: (PageDirection) -> Void
 
     var dragGesture: some Gesture {
@@ -40,13 +40,13 @@ struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
 
     init(
         objects: Binding<[T]>,
-        pageWidth: CGFloat,
+        pageWidth: Binding<CGFloat>,
         pagingHandler: @escaping (PageDirection) -> Void
     ) {
         _objects = objects
-        _pagingOffset = State(initialValue: -pageWidth)
+        _pageWidth = pageWidth
+        _pagingOffset = State(initialValue: -pageWidth.wrappedValue)
         _draggingOffset = State(initialValue: 0)
-        self.pageWidth = pageWidth
         self.pagingHandler = pagingHandler
     }
 
@@ -55,6 +55,9 @@ struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
             .offset(x: pagingOffset + draggingOffset, y: 0)
             .simultaneousGesture(dragGesture)
             .onChange(of: objects) { _, _ in
+                pagingOffset = -pageWidth
+            }
+            .onChange(of: pageWidth) { _, _ in
                 pagingOffset = -pageWidth
             }
     }

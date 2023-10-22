@@ -36,7 +36,10 @@ public struct InfinitePagingView<T: Pageable, Content: View>: View {
             .modifier(
                 InfinitePagingViewModifier(
                     objects: $objects,
-                    pageWidth: proxy.size.width,
+                    pageWidth: Binding<CGFloat>(
+                        get: { proxy.size.width },
+                        set: { _ in }
+                    ),
                     pagingHandler: pagingHandler
                 )
             )
