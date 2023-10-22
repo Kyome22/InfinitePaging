@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "InfinitePagingView",
     platforms: [
-      .iOS(.v16)
+      .iOS(.v17)
     ],
     products: [
         .library(
@@ -16,10 +16,6 @@ let package = Package(
     targets: [
         .target(
             name: "InfinitePagingView"
-        ),
-        .testTarget(
-            name: "InfinitePagingViewTests",
-            dependencies: ["InfinitePagingView"]
         )
     ]
 )
