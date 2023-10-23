@@ -44,5 +44,6 @@ public struct InfinitePagingView<T: Pageable, Content: View>: View {
                 )
             )
         }
+        .clipped()
     }
 }
