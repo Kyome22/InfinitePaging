@@ -9,23 +9,24 @@ import SwiftUI
 
 struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
     @Binding var objects: [T]
-    @Binding var pageWidth: CGFloat
+    @Binding var pageSize: CGFloat
     @State var pagingOffset: CGFloat
     @State var draggingOffset: CGFloat
+    let pageAlignment: PageAlignment
     let pagingHandler: (PageDirection) -> Void
 
     var dragGesture: some Gesture {
         DragGesture(minimumDistance: 0)
             .onChanged { value in
-                draggingOffset = value.translation.width
+                draggingOffset = pageAlignment.scalar(value.translation)
             }
             .onEnded { value in
-                let oldIndex = Int(floor(0.5 - (pagingOffset / pageWidth)))
-                pagingOffset += value.translation.width
+                let oldIndex = Int(floor(0.5 - (pagingOffset / pageSize)))
+                pagingOffset += pageAlignment.scalar(value.translation)
                 draggingOffset = 0
-                let newIndex = Int(max(0, min(2, floor(0.5 - (pagingOffset / pageWidth)))))
+                let newIndex = Int(max(0, min(2, floor(0.5 - (pagingOffset / pageSize)))))
                 withAnimation(.linear(duration: 0.1)) {
-                    pagingOffset = -pageWidth * CGFloat(newIndex)
+                    pagingOffset = -pageSize * CGFloat(newIndex)
                 } completion: {
                     if newIndex == oldIndex { return }
                     if newIndex == 0 {
@@ -40,25 +41,27 @@ struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
 
     init(
         objects: Binding<[T]>,
-        pageWidth: Binding<CGFloat>,
+        pageSize: Binding<CGFloat>,
+        pageAlignment: PageAlignment,
         pagingHandler: @escaping (PageDirection) -> Void
     ) {
         _objects = objects
-        _pageWidth = pageWidth
-        _pagingOffset = State(initialValue: -pageWidth.wrappedValue)
+        _pageSize = pageSize
+        _pagingOffset = State(initialValue: -pageSize.wrappedValue)
         _draggingOffset = State(initialValue: 0)
+        self.pageAlignment = pageAlignment
         self.pagingHandler = pagingHandler
     }
 
     func body(content: Content) -> some View {
         content
-            .offset(x: pagingOffset + draggingOffset, y: 0)
+            .offset(pageAlignment.offset(pagingOffset + draggingOffset))
             .simultaneousGesture(dragGesture)
             .onChange(of: objects) { _, _ in
-                pagingOffset = -pageWidth
+                pagingOffset = -pageSize
             }
-            .onChange(of: pageWidth) { _, _ in
-                pagingOffset = -pageWidth
+            .onChange(of: pageSize) { _, _ in
+                pagingOffset = -pageSize
             }
     }
 }

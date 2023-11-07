@@ -42,6 +42,7 @@ struct ContentView: View {
     var body: some View {
         InfinitePagingView(
             objects: $pages,
+            pageAlignment: .horizontal,
             pagingHandler: { pageDirection in
                 paging(pageDirection)
             },

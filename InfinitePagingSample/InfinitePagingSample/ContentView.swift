@@ -15,17 +15,27 @@ struct ContentView: View {
         Page(number: 0),
         Page(number: 1)
     ]
+    @State var pageAlignment: PageAlignment = .horizontal
 
     var body: some View {
-        InfinitePagingView(
-            objects: $pages,
-            pagingHandler: { pageDirection in
-                paging(pageDirection)
-            },
-            content: { page in
-                pageView(page)
+        VStack {
+            InfinitePagingView(
+                objects: $pages,
+                pageAlignment: pageAlignment,
+                pagingHandler: { pageDirection in
+                    paging(pageDirection)
+                },
+                content: { page in
+                    pageView(page)
+                }
+            )
+            Picker("Alignment", selection: $pageAlignment) {
+                ForEach(PageAlignment.allCases) { alignment in
+                    Text(verbatim: alignment.label)
+                        .tag(alignment)
+                }
             }
-        )
+        }
     }
 
     // Define the View that makes up one page.
@@ -54,6 +64,11 @@ struct ContentView: View {
             }
         }
     }
+}
+
+extension PageAlignment: Identifiable {
+    public var id: String { rawValue }
+    var label: String { rawValue.localizedCapitalized }
 }
 
 #Preview {
