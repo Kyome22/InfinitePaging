@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "InfinitePaging",
     platforms: [
-      .iOS(.v17)
+      .iOS(.v16)
     ],
     products: [
         .library(
