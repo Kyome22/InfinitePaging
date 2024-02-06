@@ -55,6 +55,7 @@ public struct InfinitePagingView<T: Pageable, Content: View>: View {
             )
         }
         .clipped()
+        .id(pageAlignment)
     }
 
     private func horizontalView(size: CGSize) -> some View {
