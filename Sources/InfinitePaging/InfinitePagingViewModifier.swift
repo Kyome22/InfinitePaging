@@ -12,11 +12,12 @@ struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
     @Binding var pageSize: CGFloat
     @State var pagingOffset: CGFloat
     @State var draggingOffset: CGFloat
+    private let minimumDistance: CGFloat
     let pageAlignment: PageAlignment
     let pagingHandler: (PageDirection) -> Void
 
     var dragGesture: some Gesture {
-        DragGesture(minimumDistance: 0)
+        DragGesture(minimumDistance: minimumDistance)
             .onChanged { value in
                 draggingOffset = pageAlignment.scalar(value.translation)
             }
@@ -57,6 +58,7 @@ struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
     init(
         objects: Binding<[T]>,
         pageSize: Binding<CGFloat>,
+        minimumDistance: CGFloat,
         pageAlignment: PageAlignment,
         pagingHandler: @escaping (PageDirection) -> Void
     ) {
@@ -64,6 +66,7 @@ struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
         _pageSize = pageSize
         _pagingOffset = State(initialValue: -pageSize.wrappedValue)
         _draggingOffset = State(initialValue: 0)
+        self.minimumDistance = minimumDistance
         self.pageAlignment = pageAlignment
         self.pagingHandler = pagingHandler
     }

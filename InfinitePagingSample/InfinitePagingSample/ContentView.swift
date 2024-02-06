@@ -22,6 +22,7 @@ struct ContentView: View {
             InfinitePagingView(
                 objects: $pages,
                 pageAlignment: pageAlignment,
+                minimumDistance: 10,
                 pagingHandler: { pageDirection in
                     paging(pageDirection)
                 },
