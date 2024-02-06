@@ -27,7 +27,7 @@ struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
                 draggingOffset = 0
                 let newIndex = Int(max(0, min(2, floor(0.5 - (pagingOffset / pageSize)))))
                 if #available(iOS 17.0, *) {
-                    withAnimation(.linear(duration: 0.1)) {
+                    withAnimation(.smooth(duration: 0.1)) {
                         pagingOffset = -pageSize * CGFloat(newIndex)
                     } completion: {
                         if newIndex == oldIndex { return }
@@ -39,7 +39,7 @@ struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
                         }
                     }
                 } else {
-                    withAnimation(.linear(duration: 0.1)) {
+                    withAnimation(.smooth(duration: 0.1)) {
                         pagingOffset = -pageSize * CGFloat(newIndex)
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
