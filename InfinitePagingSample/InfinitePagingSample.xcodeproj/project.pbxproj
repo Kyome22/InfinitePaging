@@ -3,19 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C9449E02B71F07A009A3C30 /* InfinitePaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1C9449DF2B71F07A009A3C30 /* InfinitePaging */; };
 		1CE66B8C2AE4F70F00AC612D /* InfinitePagingSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE66B8B2AE4F70F00AC612D /* InfinitePagingSampleApp.swift */; };
 		1CE66B8E2AE4F70F00AC612D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE66B8D2AE4F70F00AC612D /* ContentView.swift */; };
 		1CE66B902AE4F71000AC612D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE66B8F2AE4F71000AC612D /* Assets.xcassets */; };
 		1CE66B932AE4F71000AC612D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE66B922AE4F71000AC612D /* Preview Assets.xcassets */; };
-		1CE66B9B2AE4F78300AC612D /* InfinitePaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1CE66B9A2AE4F78300AC612D /* InfinitePaging */; };
 		1CE66B9D2AE4F7CB00AC612D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE66B9C2AE4F7CB00AC612D /* Page.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C9449DD2B71F06D009A3C30 /* InfinitePaging */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = InfinitePaging; path = ..; sourceTree = "<group>"; };
 		1CE66B882AE4F70F00AC612D /* InfinitePagingSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfinitePagingSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE66B8B2AE4F70F00AC612D /* InfinitePagingSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinitePagingSampleApp.swift; sourceTree = "<group>"; };
 		1CE66B8D2AE4F70F00AC612D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -29,18 +30,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CE66B9B2AE4F78300AC612D /* InfinitePaging in Frameworks */,
+				1C9449E02B71F07A009A3C30 /* InfinitePaging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C9449DE2B71F07A009A3C30 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1CE66B7F2AE4F70F00AC612D = {
 			isa = PBXGroup;
 			children = (
+				1C9449DD2B71F06D009A3C30 /* InfinitePaging */,
 				1CE66B8A2AE4F70F00AC612D /* InfinitePagingSample */,
 				1CE66B892AE4F70F00AC612D /* Products */,
+				1C9449DE2B71F07A009A3C30 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,7 +99,7 @@
 			);
 			name = InfinitePagingSample;
 			packageProductDependencies = (
-				1CE66B9A2AE4F78300AC612D /* InfinitePaging */,
+				1C9449DF2B71F07A009A3C30 /* InfinitePaging */,
 			);
 			productName = InfinitePagingSample;
 			productReference = 1CE66B882AE4F70F00AC612D /* InfinitePagingSample.app */;
@@ -120,7 +130,6 @@
 			);
 			mainGroup = 1CE66B7F2AE4F70F00AC612D;
 			packageReferences = (
-				1CE66B992AE4F78300AC612D /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = 1CE66B892AE4F70F00AC612D /* Products */;
 			projectDirPath = "";
@@ -363,15 +372,8 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		1CE66B992AE4F78300AC612D /* XCLocalSwiftPackageReference ".." */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ..;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		1CE66B9A2AE4F78300AC612D /* InfinitePaging */ = {
+		1C9449DF2B71F07A009A3C30 /* InfinitePaging */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = InfinitePaging;
 		};

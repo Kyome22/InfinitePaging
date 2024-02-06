@@ -12,14 +12,14 @@ public protocol Pageable: Equatable & Identifiable {}
 public struct InfinitePagingView<T: Pageable, Content: View>: View {
     @Binding var objects: [T]
     private let minimumDistance: CGFloat
-    let pageAlignment: PageAlignment
-    let pagingHandler: (PageDirection) -> Void
-    let content: (T) -> Content
+    private let pageAlignment: PageAlignment
+    private let pagingHandler: (PageDirection) -> Void
+    private let content: (T) -> Content
 
     public init(
         objects: Binding<[T]>,
-        pageAlignment: PageAlignment,
         minimumDistance: CGFloat = 0,
+        pageAlignment: PageAlignment,
         pagingHandler: @escaping (PageDirection) -> Void,
         @ViewBuilder content: @escaping (T) -> Content
     ) {
@@ -57,7 +57,7 @@ public struct InfinitePagingView<T: Pageable, Content: View>: View {
         .clipped()
     }
 
-    func horizontalView(size: CGSize) -> some View {
+    private func horizontalView(size: CGSize) -> some View {
         return HStack(alignment: .center, spacing: 0) {
             ForEach(objects) { object in
                 content(object)
@@ -66,7 +66,7 @@ public struct InfinitePagingView<T: Pageable, Content: View>: View {
         }
     }
 
-    func verticalView(size: CGSize) -> some View {
+    private func verticalView(size: CGSize) -> some View {
         return VStack(alignment: .center, spacing: 0) {
             ForEach(objects) { object in
                 content(object)

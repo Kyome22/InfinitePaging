@@ -13,8 +13,8 @@ struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
     @State var pagingOffset: CGFloat
     @State var draggingOffset: CGFloat
     private let minimumDistance: CGFloat
-    let pageAlignment: PageAlignment
-    let pagingHandler: (PageDirection) -> Void
+    private let pageAlignment: PageAlignment
+    private let pagingHandler: (PageDirection) -> Void
 
     var dragGesture: some Gesture {
         DragGesture(minimumDistance: minimumDistance)

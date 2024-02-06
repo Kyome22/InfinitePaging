@@ -21,8 +21,8 @@ struct ContentView: View {
         VStack {
             InfinitePagingView(
                 objects: $pages,
-                pageAlignment: pageAlignment,
                 minimumDistance: 10,
+                pageAlignment: pageAlignment,
                 pagingHandler: { pageDirection in
                     paging(pageDirection)
                 },
