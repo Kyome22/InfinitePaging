@@ -25,7 +25,8 @@ struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
                 let oldIndex = Int(floor(0.5 - (pagingOffset / pageSize)))
                 pagingOffset += pageAlignment.scalar(value.translation)
                 draggingOffset = 0
-                let newIndex = Int(max(0, min(2, floor(0.5 - (pagingOffset / pageSize)))))
+                let predicatedOffset = pageAlignment.scalar(value.predictedEndTranslation)
+                let newIndex = Int(max(0, min(2, round(1 - predicatedOffset / pageSize))))
                 if #available(iOS 17.0, *) {
                     withAnimation(.smooth(duration: 0.1)) {
                         pagingOffset = -pageSize * CGFloat(newIndex)
