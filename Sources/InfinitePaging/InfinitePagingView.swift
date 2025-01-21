@@ -59,7 +59,7 @@ public struct InfinitePagingView<T: Pageable, Content: View>: View {
     }
 
     private func horizontalView(size: CGSize) -> some View {
-        return HStack(alignment: .center, spacing: 0) {
+        HStack(alignment: .center, spacing: 0) {
             ForEach(objects) { object in
                 content(object)
                     .frame(width: size.width, height: size.height)
@@ -68,7 +68,7 @@ public struct InfinitePagingView<T: Pageable, Content: View>: View {
     }
 
     private func verticalView(size: CGSize) -> some View {
-        return VStack(alignment: .center, spacing: 0) {
+        VStack(alignment: .center, spacing: 0) {
             ForEach(objects) { object in
                 content(object)
                     .frame(width: size.width, height: size.height)

@@ -27,30 +27,15 @@ struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
                 draggingOffset = 0
                 let predicatedOffset = pageAlignment.scalar(value.predictedEndTranslation)
                 let newIndex = Int(max(0, min(2, round(1 - predicatedOffset / pageSize))))
-                if #available(iOS 17.0, *) {
-                    withAnimation(.smooth(duration: 0.1)) {
-                        pagingOffset = -pageSize * CGFloat(newIndex)
-                    } completion: {
-                        if newIndex == oldIndex { return }
-                        if newIndex == 0 {
-                            pagingHandler(.backward)
-                        }
-                        if newIndex == 2 {
-                            pagingHandler(.forward)
-                        }
+                withAnimation(.smooth(duration: 0.1)) {
+                    pagingOffset = -pageSize * CGFloat(newIndex)
+                } completion: {
+                    if newIndex == oldIndex { return }
+                    if newIndex == 0 {
+                        pagingHandler(.backward)
                     }
-                } else {
-                    withAnimation(.smooth(duration: 0.1)) {
-                        pagingOffset = -pageSize * CGFloat(newIndex)
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        if newIndex == oldIndex { return }
-                        if newIndex == 0 {
-                            pagingHandler(.backward)
-                        }
-                        if newIndex == 2 {
-                            pagingHandler(.forward)
-                        }
+                    if newIndex == 2 {
+                        pagingHandler(.forward)
                     }
                 }
             }
@@ -76,10 +61,10 @@ struct InfinitePagingViewModifier<T: Pageable>: ViewModifier {
         content
             .offset(pageAlignment.offset(pagingOffset + draggingOffset))
             .simultaneousGesture(dragGesture)
-            .onChange(of: objects) { _ in
+            .onChange(of: objects) { _, _ in
                 pagingOffset = -pageSize
             }
-            .onChange(of: pageSize) { _ in
+            .onChange(of: pageSize) { _, _ in
                 pagingOffset = -pageSize
             }
     }

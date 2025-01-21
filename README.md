@@ -6,10 +6,9 @@ This provides infinite carousel-like paging view in SwiftUI.
 
 ## Requirements
 
-- Development with Xcode 15.2+
-- Written in Swift 5.9
-- swift-tools-version: 5.9
-- Compatible with iOS 16.4+
+- Development with Xcode 16.2+
+- Written in Swift 6.0
+- Compatible with iOS 17.0+
 
 ## Usage
 
@@ -43,18 +42,14 @@ struct ContentView: View {
         InfinitePagingView(
             objects: $pages,
             pageAlignment: .horizontal,
-            pagingHandler: { pageDirection in
-                paging(pageDirection)
-            },
-            content: { page in
-                pageView(page)
-            }
+            pagingHandler: { paging($0) },
+            content: { pageView($0) }
         )
     }
 
     // Define the View that makes up one page.
     private func pageView(_ page: Page) -> some View {
-        return Text(String(page.number))
+        Text(String(page.number))
             .font(.largeTitle)
             .fontWeight(.bold)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -80,3 +75,7 @@ struct ContentView: View {
     }
 }
 ```
+
+## Privacy Manifest
+
+This library does not collect or track user information, so it does not include a PrivacyInfo.xcprivacy file.

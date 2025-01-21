@@ -13,17 +13,19 @@ public enum PageAlignment: String, CaseIterable {
 
     func scalar(_ size: CGSize) -> CGFloat {
         switch self {
-        case .horizontal: return size.width
-        case .vertical: return size.height
+        case .horizontal:
+            size.width
+        case .vertical:
+            size.height
         }
     }
 
     func offset(_ value: CGFloat) -> CGSize {
         switch self {
         case .horizontal: 
-            return CGSize(width: value, height: 0)
+            CGSize(width: value, height: 0)
         case .vertical:
-            return CGSize(width: 0, height: value)
+            CGSize(width: 0, height: value)
         }
     }
 }

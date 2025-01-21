@@ -23,12 +23,8 @@ struct ContentView: View {
                 objects: $pages,
                 minimumDistance: 10,
                 pageAlignment: pageAlignment,
-                pagingHandler: { pageDirection in
-                    paging(pageDirection)
-                },
-                content: { page in
-                    pageView(page)
-                }
+                pagingHandler: { paging($0) },
+                content: { pageView($0) }
             )
             Picker("Alignment", selection: $pageAlignment) {
                 ForEach(PageAlignment.allCases) { alignment in
@@ -41,7 +37,7 @@ struct ContentView: View {
 
     // Define the View that makes up one page.
     private func pageView(_ page: Page) -> some View {
-        return Text(String(page.number))
+        Text(String(page.number))
             .font(.largeTitle)
             .fontWeight(.bold)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -67,7 +63,7 @@ struct ContentView: View {
     }
 }
 
-extension PageAlignment: Identifiable {
+extension PageAlignment: @retroactive Identifiable {
     public var id: String { rawValue }
     var label: String { rawValue.localizedCapitalized }
 }

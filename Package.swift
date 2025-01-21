@@ -1,22 +1,22 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.0
 
 import PackageDescription
 
 let package = Package(
     name: "InfinitePaging",
     platforms: [
-      .iOS("16.4")
+        .iOS(.v17),
     ],
     products: [
         .library(
             name: "InfinitePaging",
             targets: ["InfinitePaging"]
-        )
+        ),
     ],
     targets: [
         .target(
             name: "InfinitePaging",
-            resources: [.copy("PrivacyInfo.xcprivacy")]
-        )
+            swiftSettings: [.enableUpcomingFeature("ExistentialAny")]
+        ),
     ]
 )
